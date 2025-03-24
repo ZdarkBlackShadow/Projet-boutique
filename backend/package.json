@@ -4,8 +4,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "installDependencies": "npm install express cors"
+    "Devstart": "nodemon app.js",
+    "start" : "node app.js",
+    "installDependencies": "npm install express cors",
+    "installDevDependencies": "install nodemon --save-dev"
   },
   "author": "",
   "license": "ISC",
