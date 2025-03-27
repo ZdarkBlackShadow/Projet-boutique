@@ -5,9 +5,9 @@ const port = 3000;
 const cors = require('cors');
 app.use(cors({
     origin:"*"
-}))
+}));
 
-const hardawareRoutes = require('./routes/hardware')
+const hardawareRoutes = require('./routes/hardware');
 
 app.use(hardawareRoutes);
 

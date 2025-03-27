@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardawre</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/hardware.css">
+</head>
+<body>
+    <script src="./assets/js/hardware.js"></script>
+    <!-- Test de formulaire à adapter pour demander l'adresse de livraison
+    <h2>Formulaire</h2>
+    <form id="myForm">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        
+        <button type="submit">Envoyer</button>
+    </form>
+    <label>Genre :</label>
+    <input type="radio" id="male" name="gender" value="Homme">
+    <label for="male">Homme</label>
+    <input type="radio" id="female" name="gender" value="Femme">
+    <label for="female">Femme</label>
+    <br><br>
+    
+    <label>Centres d'intérêt :</label>
+    <input type="checkbox" id="sport" name="interest" value="Sport">
+    <label for="sport">Sport</label>
+    <input type="checkbox" id="music" name="interest" value="Musique">
+    <label for="music">Musique</label>
+    <input type="checkbox" id="reading" name="interest" value="Lecture">
+    <label for="reading">Lecture</label>
+    <br><br>
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêcher l'envoi du formulaire
+            
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let selectedGender = gender ? gender.value : "Non spécifié";
+            
+            let interests = document.querySelectorAll('input[name="interest"]:checked');
+            let selectedInterests = Array.from(interests).map(checkbox => checkbox.value);
+            
+            console.log("Nom: " + name);
+            console.log("Email: " + email);
+            console.log("Genre: " + selectedGender);
+            console.log("Centres d'intérêt: " + (selectedInterests.length ? selectedInterests.join(", ") : "Aucun"));
+        });
+
+        document.querySelectorAll('input[name="gender"]').forEach(input => {
+            input.addEventListener("change", function() {
+                console.log("Genre sélectionné: " + this.value);
+            });
+        });
+        
+        document.querySelectorAll('input[name="interest"]').forEach(input => {
+            input.addEventListener("change", function() {
+                let selectedInterests = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(checkbox => checkbox.value);
+                console.log("Centres d'intérêt sélectionnés: " + (selectedInterests.length ? selectedInterests.join(", ") : "Aucun"));
+            });
+        });
+    </script>
+    -->
+</body>
+</html>
