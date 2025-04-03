@@ -4,25 +4,11 @@ function showPopup() {
     const message = document.createElement('p');
     const button = document.createElement('button');
 
-    // Configurer le contenu et les styles
+    // Configurer le contenu et les classes
+    popup.className = 'popup';
     message.textContent = 'Le RGB rajoute des FPS';
     button.textContent = 'OK';
-    button.style.backgroundColor = 'green';
-    button.style.color = 'white';
-    button.style.border = 'none';
-    button.style.padding = '10px 20px';
-    button.style.cursor = 'pointer';
-
-    // Styles pour la popup
-    popup.style.position = 'fixed';
-    popup.style.top = '50%';
-    popup.style.left = '50%';
-    popup.style.transform = 'translate(-50%, -50%)';
-    popup.style.backgroundColor = 'white';
-    popup.style.padding = '20px';
-    popup.style.borderRadius = '5px';
-    popup.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
-    popup.style.zIndex = '1000';
+    button.className = 'popup-button';
 
     // Ajouter les éléments à la popup
     popup.appendChild(message);
