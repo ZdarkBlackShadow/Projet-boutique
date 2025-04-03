@@ -29,7 +29,8 @@ exports.GetHardwareById = (req, res) => {
         message:"hardware found",
         hardware
     });
-}
+};
+
 exports.GetHardwareImage = async (req, res) => {
     try {
         const id = parseInt(req.params.id);
@@ -139,4 +140,4 @@ async function countFiles(directoryPath, extension) {
             });
         });
     });
-}
+};
