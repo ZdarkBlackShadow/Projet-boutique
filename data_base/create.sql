@@ -1,12 +1,12 @@
 -- Création de la table des catégories
 CREATE TABLE categories (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL UNIQUE
 );
 
 -- Création de la table des fabricants
 CREATE TABLE fabricants (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL UNIQUE
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE produits (
 
 -- Table pour les caractéristiques de produits
 CREATE TABLE caracteristiques (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     produit_id INTEGER NOT NULL,
     description VARCHAR(255) NOT NULL,
     FOREIGN KEY (produit_id) REFERENCES produits(id) ON DELETE CASCADE
@@ -41,7 +41,7 @@ CREATE TABLE caracteristiques (
 
 -- Création de la table utilisateurs
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     nom VARCHAR(50) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE users (
 
 -- Création de la table adresses
 CREATE TABLE adresses (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     user_id INTEGER NOT NULL,
     adresse VARCHAR(255) NOT NULL,
     complement VARCHAR(255),
@@ -70,7 +70,7 @@ CREATE TABLE adresses (
 
 -- Création de la table commandes
 CREATE TABLE commandes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     user_id INTEGER NOT NULL,
     adresse_livraison_id INTEGER NOT NULL,
     adresse_facturation_id INTEGER NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE commandes (
 
 -- Création de la table détails des commandes
 CREATE TABLE commande_details (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     commande_id INTEGER NOT NULL,
     produit_id INTEGER NOT NULL,
     quantite INTEGER NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE commande_details (
 
 -- Création de la table paniers
 CREATE TABLE paniers (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     user_id INTEGER NOT NULL,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     date_modification TIMESTAMP,
@@ -108,7 +108,7 @@ CREATE TABLE paniers (
 
 -- Création de la table produits dans le panier
 CREATE TABLE panier_produits (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     panier_id INTEGER NOT NULL,
     produit_id INTEGER NOT NULL,
     quantite INTEGER NOT NULL DEFAULT 1,
@@ -118,7 +118,7 @@ CREATE TABLE panier_produits (
 
 -- Table pour les avis/commentaires sur les produits
 CREATE TABLE avis (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     produit_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     note INTEGER NOT NULL CHECK (note BETWEEN 1 AND 5),
@@ -131,7 +131,7 @@ CREATE TABLE avis (
 
 -- Table pour la liste de souhaits (wishlist)
 CREATE TABLE liste_souhaits (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     user_id INTEGER NOT NULL,
     produit_id INTEGER NOT NULL,
     date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -142,7 +142,7 @@ CREATE TABLE liste_souhaits (
 
 -- Table pour les coupons/codes promo
 CREATE TABLE coupons (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     code VARCHAR(20) NOT NULL UNIQUE,
     type VARCHAR(20) NOT NULL, -- pourcentage, montant fixe, livraison gratuite
     valeur DECIMAL(10, 2),
