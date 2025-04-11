@@ -7,7 +7,7 @@ app.use(cors({
     origin:"*"
 }));
 
-const hardawareRoutes = require('./routes/hardware');
+const hardawareRoutes = require('./api/routes/hardware');
 
 app.use(hardawareRoutes);
 

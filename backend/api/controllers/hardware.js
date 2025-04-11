@@ -1,23 +1,18 @@
 const fs = require('fs');
 const path = require('path');
-const HardwareData = require('../data/hardware.json');
+const HardwareData = require('../../data/hardware.json');
+const ClassName = require('../models/hardware');
 
 exports.GetAllHardwareData = (req, res) => {
     const hardwares = HardwareData.hardwares;
     res.json(hardwares);
 };
 
-exports.GetHardwareById = (req, res) => {
+exports.GetHardwareById = async (req, res) => {
     const id = parseInt(req.params.id);
 
-    if (isNaN(id)) {
-        return res.status(400).json({
-            message: "Invalid ID format"
-        });
-    }
-
-    const hardwares = HardwareData.hardwares;
-    const hardware = hardwares.find((hard) => hard.id === id);
+    //dans la méthode
+    const hardware = await ClassName.getObjectById(id)
 
     if (!hardware) {
         return res.status(404).json({
