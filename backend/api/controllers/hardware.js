@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const HardwareData = require('../../data/hardware.json');
 const ClassName = require('../models/hardware');
 
 exports.GetAllHardwareData = (req, res) => {
@@ -36,12 +35,12 @@ exports.GetHardwareImage = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Produit non trouvé' });
         }
 
-        const imageDir = path.join(__dirname, '../data/imgs', hardware.folder_name);
+        const imageDir = path.join(__dirname, '../../data/imgs/', hardware.folder_name);
         
         // Vérifie si le dossier existe
         if (!fs.existsSync(imageDir)) {
-            return res.status(404).json({ 
-                success: false, 
+            return res.status(404).json({
+                success: false,
                 message: 'Dossier images introuvable',
                 path: imageDir
             });
