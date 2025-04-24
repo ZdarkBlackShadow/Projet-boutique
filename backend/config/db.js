@@ -4,7 +4,7 @@ const pool = new mysql.createPool({
 	host: 'localhost',
 	user: 'nati',
 	password: 'Hardarch@64',
-    database: 'boutique_hardware_db',
+    database: 'test2',
 	connectionLimit: 10,
 	queueLimit: 0,
 });
@@ -15,8 +15,7 @@ pool.getConnection()
 		connection.release();
 	})
 	.catch((error) => {
-		console.log("not connected to the database");
+		console.log("not connected to the database", error);
 	});
 
 module.exports = pool;
-	

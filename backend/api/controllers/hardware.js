@@ -2,9 +2,19 @@ const fs = require('fs');
 const path = require('path');
 const ClassName = require('../models/hardware');
 
-exports.GetAllHardwareData = (req, res) => {
-    const hardwares = HardwareData.hardwares;
-    res.json(hardwares);
+exports.GetAllHardwareData = async (req, res) => {
+    const hardwares = await ClassName.getAllObjects();
+
+    if (!hardwares) {
+        return res.status(404).json({
+            message : "hardwares not found"
+        });
+    }
+
+    res.status(200).json({
+        message:"hardwares found",
+        hardwares
+    });
 };
 
 exports.GetHardwareById = async (req, res) => {
@@ -23,6 +33,39 @@ exports.GetHardwareById = async (req, res) => {
         message:"hardware found",
         hardware
     });
+};
+
+exports.GetNumberOfHardwareImage = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const hardware = HardwareData.hardwares.find(h => h.id === id);
+
+        if (!hardware) {
+            return res.status(404).json({ message: 'Hardware not found' });
+        }
+
+        const imagePath = path.join(__dirname, `../data/imgs/${hardware.folder_name}`);
+        if (!fs.existsSync(imagePath)) {
+            return res.status(200).json({
+                message: "Dossier d'images trouvé mais vide",
+                numberOfImage: 0
+            });
+        }
+
+        const result = await countFiles(imagePath, hardware.image_extension);
+
+        res.status(200).json({
+            message: "Images trouvées",
+            numberOfImage: result.count,
+            files: result.files
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ 
+            message: "Erreur serveur",
+            error: error.message 
+        });
+    }
 };
 
 exports.GetHardwareImage = async (req, res) => {
@@ -79,39 +122,6 @@ exports.GetHardwareImage = async (req, res) => {
             success: false,
             message: 'Erreur serveur',
             error: error.message
-        });
-    }
-};
-
-exports.GetNumberOfHardwareImage = async (req, res) => {
-    try {
-        const id = parseInt(req.params.id);
-        const hardware = HardwareData.hardwares.find(h => h.id === id);
-
-        if (!hardware) {
-            return res.status(404).json({ message: 'Hardware not found' });
-        }
-
-        const imagePath = path.join(__dirname, `../data/imgs/${hardware.folder_name}`);
-        if (!fs.existsSync(imagePath)) {
-            return res.status(200).json({
-                message: "Dossier d'images trouvé mais vide",
-                numberOfImage: 0
-            });
-        }
-
-        const result = await countFiles(imagePath, hardware.image_extension);
-
-        res.status(200).json({
-            message: "Images trouvées",
-            numberOfImage: result.count,
-            files: result.files
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ 
-            message: "Erreur serveur",
-            error: error.message 
         });
     }
 };
