@@ -5,11 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet boutique</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="icon" href="./assets/image/logo.png" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1>Bienvenue dans notre Boutique Hardware</h1>
+        <a href="#">
+            <img src="./assets/image/logo.png" alt="logo">
+        </a>
+        <div class="filter">
+            <div>
+                <label for="rgb">RGB</label>
+                <input type="checkbox" name="rgb">
+                <label for="intel">Compatible intel</label>
+                <input type="checkbox" name="intel">
+                <label for="reduction">Réduction</label>
+                <input type="checkbox" name="reduction">
+                <label for="stock">En stock</label>
+                <input type="checkbox" name="stock">
+            </div>
+            <div>
+                <span>Trier par prix :</span>
+                <label for="price-asc">Croissant</label>
+                <input type="radio" id="price-asc" name="price-sort" value="asc">
+                <label for="price-desc">Décroissant</label>
+                <input type="radio" id="price-desc" name="price-sort" value="desc">
+            </div>
+            <div class="categorie">
+                <label for="alimentation">Alimentation</label>
+                <input type="checkbox" name="alimentation">
+                <label for="boitier">Boitier</label>
+                <input type="checkbox" name="boitier">
+                <label for="cpu">CPU</label>
+                <input type="checkbox" name="cpu">
+                <label for="gpu">GPU</label>
+                <input type="checkbox" name="gpu">
+                <label for="carte_mere">Carte mère</label>
+                <input type="checkbox" name="carte_mere">
+                <label for="ram">RAM</label>
+                <input type="checkbox" name="ram">
+                <label for="stockage">Stockage</label>
+                <input type="checkbox" name="stockage">
+                <label for="watercooling">Watercooling</label>
+                <input type="checkbox" name="watercooling">
+                <label for="clavier">Clavier</label>
+                <input type="checkbox" name="clavier">
+                <label for="souris">Souris</label>
+                <input type="checkbox" name="souris">
+                <label for="tapis">Tapis de souris</label>
+                <input type="checkbox" name="tapis">
+                <label for="ecran">Ecran</label>
+                <input type="checkbox" name="ecran">
+            </div>
+            <div class="marque">
+                <label for="amd">AMD</label>
+                <input type="checkbox" id="amd" name="AMD">
+                <label for="intel">Intel</label>
+                <input type="checkbox" id="intel" name="Intel">
+                <label for="asus">ASUS</label>
+                <input type="checkbox" id="asus" name="Asus">
+                <label for="corsair">Corsair</label>
+                <input type="checkbox" id="corsair" name="Corsair">
+                <label for="kingston">Kingston</label>
+                <input type="checkbox" id="kingston" name="Kingston">
+                <label for="msi">MSI</label>
+                <input type="checkbox" id="msi" name="MSI">
+                <label for="antec">Antec</label>
+                <input type="checkbox" id="antec" name="Antec">
+                <label for="hyte">Hyte</label>
+                <input type="checkbox" id="hyte" name="Hyte">
+                <label for="thermalright">Thermalright</label>
+                <input type="checkbox" id="thermalright" name="Thermalright">
+                <label for="radeon">Radeon</label>
+                <input type="checkbox" id="radeon" name="Radeon">
+                <label for="nvidia">NVIDIA</label>
+                <input type="checkbox" id="nvidia" name="Nvidia">
+                <label for="samsung">Samsung</label>
+                <input type="checkbox" id="samsung" name="Samsung">
+                <label for="razer">Razer</label>
+                <input type="checkbox" id="razer" name="Razer">
+                <label for="mchose">MCHOSE</label>
+                <input type="checkbox" id="mchose" name="MCHOSE">
+            </div>
+            <button id="reset" type="button">Reset les filtres</button>
+        </div>
+        <div class="user-actions">
+            <button id="login" type="button">Login</button>
+            <button id="logout" type="button" style="display: none;">Déconnexion</button>
+            <button id="wishlist-button" type="button" style="display: none;">
+                Liste de souhaits
+            </button>
+            <button id="cart-button" type="button" style="display: none;">
+                Panier (<span id="cart-count">0</span>)
+            </button>
+        </div>
     </header>
     <main>
         <section class="hero">
@@ -19,16 +107,81 @@
                 <a href="hardware.html" class="cta-button">Voir nos produits</a>
             </div>
         </section>
-        <section class="featured-products">
-            <h2>Nos setup pour gameur et créateur</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="assets/image/modern-monitor-elegant-table_23-2150706403.avif" alt="AMD Setup">
-                    <img src="assets/image/360_F_601146706_1dveBJQhlJpJvJjULHbHWjPK6PQmhIm2.jpg" alt="intel Setup">
-                </div>
-                <!-- Ajoutez ici d'autres cartes de produits si vous avez plus d'images -->
+        <section class="container-produits"></section>
+        <div id="loading">
+            <p>Chargement...</p>
+        </div>
+        <div id="modal-container"></div>
+
+        <div id="tnc-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-tnc-modal">&times;</span>
+                <h2>Conditions d'utilisation</h2>
+                <p>Bienvenue sur notre boutique en ligne.</p>
+                <p>Merci de lire attentivement les conditions d'utilisation ci-dessous avant de poursuivre :</p>
+                <ul>
+                <li>1. En accédant à notre site, vous acceptez de respecter les présentes conditions générales.</li>
+                <li>2. Toutes les informations fournies sur ce site sont à titre informatif et peuvent être modifiées sans préavis.</li>
+                <li>3. Les produits achetés sont soumis à nos politiques de retour, d’échange et de remboursement disponibles sur la page dédiée.</li>
+                <li>4. Toute utilisation frauduleuse ou abusive du site entraînera la suspension immédiate de l’accès aux services.</li>
+                <li>5. Vos données personnelles sont traitées conformément à notre politique de confidentialité, disponible en bas de page.</li>
+                </ul>
+                <p>En cliquant sur "I Accept", vous confirmez avoir lu et accepté ces conditions.</p>
+                <button id="accept-tnc">I Accept</button>
             </div>
-        </section>
+        </div>
+        <div id="login-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-tabs">
+                    <button id="login-tab" class="active">Connexion</button>
+                    <button id="register-tab">Inscription</button>
+                </div>
+                <div id="login-form" class="modal-form">
+                    <h3>Connexion</h3>
+                    <form id="loginForm">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <label for="login-password">Mot de passe</label>
+                        <input type="password" id="login-password" name="password" required>
+                        <button type="submit">Se connecter</button>
+                    </form>
+                </div>
+                <div id="register-form" class="modal-form" style="display: none;">
+                    <h3>Inscription</h3>
+                    <form id="registerForm">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" name="email" required>
+                        <label for="register-firstName">FirstName</label>
+                        <input type="text" id="register-firstName" name="firstName" required>
+                        <label for="register-lastname">Lastname</label>
+                        <input type="text" id="register-lastname" name="lastname" required>
+                        <label for="register-password">Mot de passe</label>
+                        <input type="password" id="register-password" name="password" required>
+                        <label for="register-confirm-password">Confirmer le mot de passe</label>
+                        <input type="password" id="register-confirm-password" name="confirm-password" required>
+                        <button type="submit">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="cart-modal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-cart-modal">&times;</span>
+                <h2>Votre Panier</h2>
+                <div id="cart-items-container"></div>
+                <div class="address-search">
+                    <h3>Adresse de livraison</h3>
+                    <input type="text" id="address-input" placeholder="Rechercher une adresse...">
+                    <button id="search-address">Rechercher</button>
+                    <div id="address-results"></div>
+                </div>
+                <div class="cart-total">
+                    <h3>Total: <span id="cart-total-amount">0</span>€</h3>
+                    <button id="checkout-button">Payer</button>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 Boutique Hardware. Tous droits réservés.</p>

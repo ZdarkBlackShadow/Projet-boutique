@@ -1,1 +1,0 @@
-sudo /opt/lampp/xampp start
